@@ -11,7 +11,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        version: ["v0.2.13", "v0.2.14", "v0.2.15", "v0.2.16"]
+        version: ["v0.2.16", "v0.2.13", "v0.2.14", "v0.2.15"]
     uses: ./.github/workflows/build-wheels-release.yml
     with:
       version: ${{ matrix.version }}
