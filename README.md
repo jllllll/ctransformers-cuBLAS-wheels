@@ -9,8 +9,6 @@ Requirements:
 - CUDA 11.7 - 12.2
 - Python 3.x
 
-# Package index is not yet enabled. Please install wheels directly from releases for now.
-
 Installation instructions:
 ---
 To install this package with requirements, you can use this command:
