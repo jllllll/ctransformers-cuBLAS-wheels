@@ -103,7 +103,7 @@ jobs:
           $env:CUDA_HOME = $env:CONDA_PREFIX
           $env:CUDATOOLKITDIR = $env:CONDA_PREFIX
           if ($IsLinux) {$env:LD_LIBRARY_PATH = $env:CONDA_PREFIX + '/lib:' + $env:LD_LIBRARY_PATH}
-          cmake -B build "-DCT_INSTRUCTIONS=$($env:AVXVER.ToLower())" -DCT_CUBLAS=ON
+          cmake -B build "-DCT_INSTRUCTIONS=$($env:AVXVER.ToLower())" -DCT_CUBLAS=ON -DCMAKE_CUDA_ARCHITECTURES=all
           cmake --build build --config Release
         
       - uses: actions/upload-artifact@v3
