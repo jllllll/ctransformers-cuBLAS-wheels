@@ -4,8 +4,8 @@ $destinationDir = if (Test-Path $(Join-Path $(Resolve-Path '.') 'index')) {Join-
 $avxVersions = "AVX","AVX2"
 $cudaVersions = "11.7","11.8","12.0","12.1","12.2"
 $packageVersions = "0.2.13","0.2.14","0.2.15","0.2.16"
-$pythonVersions = "3.8","3.9","3.10","3.11"
-$supportedSystems = 'linux_x86_64','win_amd64'
+$pythonVersions = "py3"
+$supportedSystems = 'any'
 $wheelSource = 'https://github.com/jllllll/ctransformers-cuBLAS-wheels/releases/download'
 $packageName = 'ctransformers'
 $packageNameNormalized = 'ctransformers'
@@ -28,7 +28,7 @@ Foreach ($avxVersion in $avxVersions)
 				$pyVer = $pythonVersion.replace('.','')
 				ForEach ($supportedSystem in $supportedSystems)
 				{
-					$wheel = "$packageName-$packageVersion+cu$cu-cp$pyVer-cp$pyVer-$supportedSystem.whl"
+					$wheel = "$packageName-$packageVersion+cu$cu-$pyVer-none-$supportedSystem.whl"
 					$cuContent += "<a href=`"$wheelURL/$wheel`">$wheel</a><br/>`n    "
 				}
 			}
