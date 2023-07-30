@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, windows-latest]
-        cuda: ["11.7.1", "11.8.0", "12.0.1", "12.1.1", "12.2.0"]
+        cuda: ["11.7.1", "11.8.0", "12.0.1", "12.1.0", "12.2.0"]
         releasetag: ["AVX","AVX2"]
     defaults:
       run:
@@ -39,6 +39,39 @@ jobs:
           repository: 'marella/ctransformers'
           ref: ${{ inputs.version }}
           submodules: 'recursive'
+          
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@v1.2.0
+        if: runner.os == 'Linux'
+        with:
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: false
+          swap-storage: false
+          
+      - name: Get Visual Studio Integration
+        if: matrix.cuda != '12.2.0' && runner.os == 'Windows'
+        uses: Jimver/cuda-toolkit@v0.2.10
+        with:
+          cuda: ${{ matrix.cuda }}
+          method: 'network'
+          sub-packages: '["visual_studio_integration"]'
+          
+      - name: Get Visual Studio Integration 12.2
+        if: matrix.cuda == '12.2.0' && runner.os == 'Windows'
+        run: |
+          Invoke-RestMethod 'https://developer.download.nvidia.com/compute/cuda/12.2.0/network_installers/cuda_12.2.0_windows_network.exe' -OutFile "$env:RUNNER_TEMP\cudainstaller.exe"
+          Start-Process "$env:RUNNER_TEMP\cudainstaller.exe" -wait -ArgumentList '-s visual_studio_integration_12.2'
+          echo 'CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2' >> $env:GITHUB_ENV
+          
+      - name: Install Visual Studio Integration
+        if: runner.os == 'Windows'
+        run: |
+          $x = (dir $env:CUDA_PATH -dir -recurse -depth 2).where({$_.name -eq 'visual_studio_integration'}).fullname
+          $y = (dir $x -dir -recurse).where({$_.name -eq 'MSBuildExtensions'}).fullname + '\*'
+          (gi 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\*\BuildCustomizations').fullname.foreach({cp $y $_})
           
       - uses: actions/setup-python@v3
         with:
