@@ -9,7 +9,7 @@ Requirements:
 - CUDA 11.7 - 12.2
 - Python 3.x
 
-### ctransformers 0.2.21 hardcodes checks for CUDA 12 libs installed through Python. You may receive a warning about this that should be ignorable so long as CUDA is properly installed elsewhere.
+### ctransformers 0.2.21+ hardcodes checks for CUDA 12 libs installed through Python. You may receive a warning about this that should be ignorable so long as CUDA is properly installed elsewhere.
 
 Installation instructions:
 ---

@@ -3,7 +3,7 @@ Set-Location $PSScriptRoot
 $destinationDir = if (Test-Path $(Join-Path $(Resolve-Path '.') 'index')) {Join-Path '.' 'index' -resolve} else {(New-Item 'index' -ItemType 'Directory').fullname}
 $avxVersions = "AVX","AVX2"
 $cudaVersions = "11.7","11.8","12.0","12.1","12.2"
-$packageVersions = "0.2.13","0.2.14","0.2.15","0.2.16","0.2.17","0.2.18","0.2.19","0.2.20","0.2.21","0.2.22"
+$packageVersions = "0.2.13","0.2.14","0.2.15","0.2.16","0.2.17","0.2.18","0.2.19","0.2.20","0.2.21","0.2.22","0.2.23"
 $pythonVersions = "py3"
 $supportedSystems = 'any'
 $wheelSource = 'https://github.com/jllllll/ctransformers-cuBLAS-wheels/releases/download'
