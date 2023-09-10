@@ -54,7 +54,7 @@ jobs:
           
       - name: Get Visual Studio Integration
         if: matrix.cuda != '12.2.0' && runner.os == 'Windows'
-        uses: Jimver/cuda-toolkit@v0.2.10
+        uses: Jimver/cuda-toolkit@v0.2.11
         with:
           cuda: ${{ matrix.cuda }}
           method: 'network'
