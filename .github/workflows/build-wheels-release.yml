@@ -57,7 +57,7 @@ jobs:
           python-version: "3.10"
         
       - name: Setup Mamba
-        uses: conda-incubator/setup-miniconda@v2.2.0
+        uses: conda-incubator/setup-miniconda@v3.0.1
         with:
           activate-environment: "build"
           python-version: "3.10"
