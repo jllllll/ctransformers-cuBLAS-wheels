@@ -52,7 +52,7 @@ jobs:
           large-packages: false
           swap-storage: false
           
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
         
@@ -126,7 +126,7 @@ jobs:
           repository: 'marella/ctransformers'
           ref: ${{ inputs.version }}
           
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
         
