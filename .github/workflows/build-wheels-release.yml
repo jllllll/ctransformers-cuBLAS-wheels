@@ -134,7 +134,7 @@ jobs:
         run: |
           Remove-Item $(Join-Path (Join-Path '.' 'ctransformers' 'lib','cuda' -resolve) '*')
           
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.releasetag }}-${{ matrix.cuda }}
           path: ./ctransformers/lib/cuda
